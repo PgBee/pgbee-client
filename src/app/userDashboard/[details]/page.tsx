@@ -79,7 +79,7 @@ const reviews = [
   return (
     <div className='min-h-screen overflow-y-auto'>
 
-      {/* navbar */}
+      {/* navbar 
       <nav className="flex-row gap-32 items-center pl-12 p-4 shadow-md bg-white">
         <Image src={Image1} alt="PgBee Logo" width={100} height={100} />
 
@@ -117,11 +117,11 @@ const reviews = [
           <span>Login / Signup</span>
         </button>
         </div>
-      </nav>
+      </nav>*/}
 
-      { /*   <div className="hidden lg:block w-full">
+        <div className="hidden lg:block w-full">
   <Navbar />
-</div>*/}
+</div>
 
 
       <div className='flex flex-row md:ml-8 ml-2 sm:pr-0 justify-between items-center p-4'> 
