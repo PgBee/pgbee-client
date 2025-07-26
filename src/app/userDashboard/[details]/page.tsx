@@ -129,7 +129,7 @@ const reviews = [
 <div className='flex flex-row gap-2 lg:hidden'>
   <Image src="/back2.svg" alt="back" width={6} height={10} />
   <p className='text-lg'>Back</p>
-</div>*/
+</div>
 
 
 
