@@ -22,6 +22,8 @@ import House4 from '../../../../public/house4.png';
 import House5 from '../../../../public/house5.png';
 import UserBlack from '../../../../public/user-black.png';
 import User1 from '../../../../public/Container.png';
+import { useRouter } from 'next/navigation';
+
 
 const Page: React.FC = () => {
   const [location, setLocation] = useState<string>('');
@@ -75,76 +77,51 @@ const reviews = [
 
   const [showModal, setShowModal] = useState(false);
 
+      const router = useRouter();
+      const detailId = ""; // Replace with your dynamic value
+    
+      const handleClick = () => {
+        router.push(`/`);};
+
+
+
 
   return (
     <div className='min-h-screen overflow-y-auto'>
 
-      {/* navbar */}
-      <nav className="flex-row gap-32 items-center pl-12 p-4 shadow-md bg-white">
-        <Image src={Image1} alt="PgBee Logo" width={100} height={100} />
+ 
 
-        <div className="flex flex-row absolute left-1/4 w-full max-w-md  space-x-4">
-          
-
-          <input
-            type="text"
-            value={location}
-            onChange={(e) => setLocation(e.target.value)}
-            placeholder="Type a location..."
-            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black"
-          />
-
-          <button
-            onClick={handleSearch}
-            className="w-50 bg-black hover:bg-gray-800 text-white py-2 rounded-md transition"
-          >
-            Search
-          </button>
-        </div>
-        <div className='absolute right-1/4  flex items-center gap-2'>
-            <Image
-                src={Image3}
-                alt="Globe"
-                width={30}
-                height={30}
-            />
-        </div>
-        <div className='flex flex-row ml-auto'>
-        <Image src={Image2} alt="user" width={40} height={30} />
-        <button
-          className="flex items-center gap-2  text-black px-4 py-2 rounded-md  transition"
-        >
-          <span>Login / Signup</span>
-        </button>
-        </div>
-      </nav>
-
-      { /*   <div className="hidden lg:block w-full">
+        <div className="hidden lg:block w-full">
   <Navbar />
-</div>*/}
+</div> 
 
 
       <div className='flex flex-row md:ml-8 ml-2 sm:pr-0 justify-between items-center p-4'> 
-      <Image src="/back.svg" alt="back" width={24} height={24} className="hidden sm:block"/>
+      <button onClick={handleClick} >
+      <Image src="/back.svg" alt="back" width={24} height={24} className="hidden sm:block hover:cursor-pointer"/>
+      </button>
 <div className='flex flex-row gap-2 lg:hidden'>
   <Image src="/back2.svg" alt="back" width={6} height={10} />
+  <button onClick={handleClick} className="text-black px-4 py-2 rounded-lg mt-4 shadow hover:cursor-pointer">
   <p className='text-lg'>Back</p>
+
 </div>
 
 
 
-        
+  </b
+
       <p className="hidden lg:block text-4xl font-bold absolute left-[10%]">
         Golden Turtles Homestay
       </p>
         <div className=" rounded-md p-4 flex gap-4 md:mr-8 ">
         
-            <button className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-md">
-            <Image src="./Globe_icon.svg" alt="share" width={24} height={24} />
+            <button className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-md hover:cursor-pointer">
+            <Image src="/share.jpg" alt="share" width={24} height={24} />
             Share
             </button>
 
-            <button className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-md">
+            <button className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-md hover:cursor-pointer">
             <Image src="/heart.png" alt="heart" width={24} height={24} />
             Save
             </button>
@@ -223,7 +200,7 @@ const reviews = [
         <button className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 font-medium rounded-full hover:bg-gray-50 transition-colors">
           View Details
         </button>
-        <button className="flex-1 px-4 py-2 bg-gray-900 text-white font-medium rounded-full hover:bg-gray-800 transition-colors">
+        <button className="flex-1 px-4 py-2 bg-gray-900 text-white font-medium rounded-full hover:bg-gray-800 transition-colors hover:cursor-pointer">
           Book Now
         </button>
       </div>
@@ -243,7 +220,7 @@ const reviews = [
     </p>
   </div>
   <div className="mr-28">
-    <button className="bg-black text-white px-8 py-4 rounded-md hover:bg-gray-800 transition">
+    <button className="bg-black text-white px-8 py-4 rounded-md hover:bg-gray-800 transition hover:cursor-pointer">
       Book Now
     </button>
   </div>
@@ -262,7 +239,7 @@ const reviews = [
     <p className="text-lg font-bold">Hosted by John </p>
     <p className="text-sm text-gray-400 ">11 years of hosting</p>
   </div>
-  <button className="flex items-center gap-2 ml-6 px-4 py-2 border-2 border-black rounded-md hover:bg-gray-100 transition md:absolute right-1/9">
+  <button className="flex items-center gap-2 ml-6 px-4 py-2 border-2 border-black rounded-md hover:bg-gray-100 transition md:absolute right-1/9 hover:cursor-pointer">
     Contact Owner
   </button>
 </div>

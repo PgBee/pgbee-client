@@ -1,6 +1,10 @@
 import { CheckCircleOutline, Favorite, FavoriteBorder } from "@mui/icons-material";
 import { useEffect, useState } from "react";
 
+import { useRouter } from 'next/navigation';
+
+
+
 export default function LandingPage() {
     const pgs = [
         {
@@ -70,6 +74,12 @@ export default function LandingPage() {
     };
     const isMobile = useIsMobile();
 
+    const router = useRouter();
+      const detailId = ""; // Replace with your dynamic value
+    
+      const handleClick = () => {
+        router.push(`/userDashboard/page`);};
+
     return (
         <div className="w-full lg:basis-4/5">
             {/* searchbar */}
@@ -94,10 +104,9 @@ export default function LandingPage() {
                 const remainingCount = pg.images.length - maxDisplay;
 
                 return (
-                    <div key={i} className="m-[15px] lg:m-[30px] flex pb-6 ">
+                    <div key={i} className="m-[12px] lg:m-[30px] flex pb-6 ">
                         {/* Main image */}
-                        <div className="relative w-[220px] lg:w-[400px] h-[170px] lg:h-[260px] rounded-2xl overflow-hidden flex-shrink-0">
-
+                        <div className="relative w-[200px] lg:w-[400px] h-[165px] lg:h-[260px] rounded-2xl overflow-hidden flex-shrink-0">
                             <img
                                 src={pg.images[0]}
                                 alt={pg.name}
@@ -137,8 +146,8 @@ export default function LandingPage() {
                         </div>
 
                         {/* Description */}
-                        <div className="flex flex-col ml-[20px] lg:ml-[50px]">
-                            <span className="text-[15px] lg:text-[22px] font-bold">{pg.name}</span>
+                        <div className="flex flex-col ml-[15px] lg:ml-[20px] lg:ml-[50px]">
+                            <span className="text-[17px] lg:text-[22px] font-bold">{pg.name}</span>
                             <span className="text-[14px] lg:text-[20px] text-gray-500 mt-[0px] lg:mt-[5px]">{pg.location}</span>
                             <div className="mt-[5px] flex flex-row gap-4 flex-wrap items-center">
                                 {pg.amenities.slice(0, isMobile ? 2 : 4).map((a, idx) => (
@@ -168,7 +177,7 @@ export default function LandingPage() {
 
                             {/* Buttons */}
                             <div className="flex items-center justify-center ">
-                                <button className="hidden sm:block bg-white text-black px-5 py-2 rounded-xl mt-4 mr-2 border cursor-pointer">
+                                <button onClick={handleClick} className="hidden sm:block bg-white text-black px-5 py-2 rounded-xl mt-4 mr-2 border cursor-pointer">
                                     View Details
                                 </button>
                                 <button className="hidden sm:block bg-black text-white px-5 py-2 rounded-xl mt-4  cursor-pointer">
