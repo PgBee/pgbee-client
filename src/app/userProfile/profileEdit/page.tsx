@@ -14,7 +14,6 @@ function MobileProfileEdit() {
     const router = useRouter();
 
     const handleSaveChanges = () => {
-        // You can add your data saving logic here
         router.push('/userProfile/profileView');
     };
 
