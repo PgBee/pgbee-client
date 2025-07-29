@@ -1,9 +1,10 @@
 "use client";
 
 import { FcGoogle } from "react-icons/fc";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
+import ReCAPTCHA from "react-google-recaptcha";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -18,7 +19,7 @@ export default function LoginPage() {
     return regex.test(email);
   };
 
-  const handleLogin = async() => {
+  const handleLogin = async () => {
     let valid = true;
 
     if (!validateEmail(email)) {
@@ -41,13 +42,12 @@ export default function LoginPage() {
     }
 
     if (valid) {
-      alert("Login successful!");
 
       try {
-        await fetchDetails(); 
+        await fetchDetails();
         alert("Login successful!");
-        router.push("/"); 
-      }catch (error) {
+        router.push("/");
+      } catch (error) {
         console.error("Error during login fetch:", error);
         alert("Something went wrong. Please try again.");
       }
@@ -57,7 +57,7 @@ export default function LoginPage() {
   // fetching details 
   const fetchDetails = async () => {
     try {
-      const response = await axios.post("https://server.pgbee.in/api/v1/auth/login", {
+      const response = await axios.post("https://server.pgbee.in/api/v1/login", {
         withCredentials: true,
         email,
         password,
@@ -69,6 +69,43 @@ export default function LoginPage() {
       alert("Something went wrong. Please try again.");
     }
   };
+
+  // google api fetch
+  const handleGoogleLogin = async () => {
+    try {
+      const response = await axios.get("https://server.pgbee.in/api/v1/google");
+      console.log("Google login response:", response.data);
+      // router.push("/userDashboard/page");
+    } catch (error) {
+      console.error("Error during Google login:", error);
+      alert("Something went wrong with Google login. Please try again.");
+    }
+  };
+
+  function MyForm() {
+    const recaptchaRef = useRef<ReCAPTCHA>(null);
+
+    const handleSubmit = async () => {
+  
+      let token = "";
+      if (recaptchaRef.current) {
+        token = await recaptchaRef.current.executeAsync();
+        recaptchaRef.current?.reset();
+      }else{
+        console.log("reCAPTCHA not initialized");
+      }
+
+      await axios.post("https://server.pgbee.in/api/v1/verify-captcha", { token });
+    };
+
+    return (
+      <ReCAPTCHA
+        sitekey="YOUR_SITE_KEY"
+        size="invisible"
+        ref={recaptchaRef}
+      />
+    );
+  }
 
 
   return (

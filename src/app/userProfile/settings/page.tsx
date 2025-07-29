@@ -1,7 +1,7 @@
 "use client";
 
 import Image from 'next/image';
-import Image1 from './../../../public/PgBee.png';
+import Image1 from '../../../../public/PgBee.png';
 import { KeyboardArrowLeft, ToggleOn, ToggleOff } from '@mui/icons-material';
 import { useState } from 'react';
 
